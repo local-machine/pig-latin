@@ -72,28 +72,25 @@ var beginQU = function(sentance) {
 $(document).ready(function() {
   $("form#pig-latin").submit(function(event) {
     event.preventDefault();
-    var sentance = ($("input#sentance").val());
-    sentanceLower= sentance.toLowerCase();
-    // var consonants= ['b','c','d','f','g','h','j','k','l','m','n','p','r','s','t','v','w','x','y','z','q']
-    // var vowel=['a','e','i','o','u'];
+    var userInput, words;
+    var sentance=[];
+    var store=[];
+    var userInput = ($("input#english").val());
+    words= userInput.split(' ');
+    // alert(words);
     // debugger;
-    // if (sentance.includes(vowel))
-  //   if (sentanceLower[0]==='a' || sentanceLower[0]==='e' || sentanceLower[0]==='i' || sentanceLower[0]==='o' || sentanceLower[0]==='u'){
-  //   result=beginVowel(sentance);
-  //   return result;
-  // }else if (sentanceLower[0]==="q" && sentanceLower[1]==="u") {
-  //   result=beginQU(sentance);
-  //   return result;
-  // }else{
-  //   result=beginconsonant(sentance);
-  //   return result;
-  // }
-    var result = beginVowel(sentance);
-
-    $(".sentance").text(sentance);
-
-    $(".result").text(result);
-
+    for (var i = 0; i < words.length; i++) {
+      sentance= words[i];
+      sentanceLower= sentance.toLowerCase();
+      var result = beginVowel(sentance);
+      store.push(result);
+      // return result;
+      // store= store.push(result);
+    }
+     store = store.join(" ")
+    // var result = beginVowel(sentance);
+    $(".english").text(userInput);
+    $(".result").text(store);
     $("#output").show();
   });
 });
